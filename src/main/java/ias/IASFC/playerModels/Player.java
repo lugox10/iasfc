@@ -2,9 +2,10 @@ package ias.IASFC.playerModels;
 
 
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,9 +14,8 @@ import javax.persistence.UniqueConstraint;
 import java.util.Collection;
 import javax.persistence.*;
 
-@Data
-@Getter
-@Setter
+
+
 @Entity
 @Table(name = "player",uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Player  {
@@ -29,10 +29,10 @@ public class Player  {
     private String apellido;
     @Column(name = "posicionDeJuego")
     private String posicionDeJuego;
-    @Column(name = "email")
+
     private String email;
-    @Column(name = "contraseña")
     private String contraseña;
+
     @Column(name = "rol")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "usuarios_roles",

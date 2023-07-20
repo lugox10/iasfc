@@ -4,11 +4,12 @@ package ias.IASFC.PlayerController;
 import ias.IASFC.playerDTO.PlayerRegisterDTO;
 import ias.IASFC.playerService.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/registro")
-@RestController
-public class PlayerController {
+@Controller
+public class  PlayerController {
     @Autowired
     private PlayerService playerService;
 
