@@ -7,4 +7,4 @@
 # en el futuro se planea la integracion de una pasarela de pagos para la cancha asi como una distribucion de los jugadores antes de empezar cada encuentro para ahorrar tiempo y comensar lo mas antes posible.
 # se esta implementando springSecurity
 # se implemento thymeleaf y html para la vista del formulario
-![Captura de pantalla (7)](https://github.com/lugox10/iasfc/assets/139795092/ec28e623-3f23-4f1b-9308-5950d2d85b21)
+
