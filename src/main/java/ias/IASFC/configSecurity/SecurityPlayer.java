@@ -17,16 +17,16 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityPlayer extends WebSecurityConfigurerAdapter {
 
-   @Autowired
+    @Autowired
     private PlayerService playerService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authentication = new DaoAuthenticationProvider();
         authentication.setUserDetailsService(playerService);
         authentication.setPasswordEncoder(passwordEncoder());
@@ -34,17 +34,17 @@ public class SecurityPlayer extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder authentication) throws  Exception{
-       authentication.authenticationProvider(authenticationProvider());
+    protected void configure(AuthenticationManagerBuilder authentication) throws Exception {
+        authentication.authenticationProvider(authenticationProvider());
     }
 
     @Override
-    protected  void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(
-                "/registro**",
-                "/js/**",
-                "/css/**",
-                "/img/**").permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login").
+                        "/registro**",
+                        "/js/**",
+                        "/css/**",
+                        "/img/**").permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login").
                 permitAll().and().logout().invalidateHttpSession(true).
                 clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout")).
                 logoutSuccessUrl("/login?logout").permitAll();

@@ -26,33 +26,33 @@ public class PlayerServiceImplements implements PlayerService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
+    @Autowired
     private PlayerRepository playerRepository;
-    public PlayerServiceImplements(PlayerRepository playerRepository) {
-        super();
-        this.playerRepository = playerRepository;
-    }
+
     @Override
     public Player save(PlayerRegisterDTO playerRegisterDTO) {
-        Player player = new Player(playerRegisterDTO.getNombre(),playerRegisterDTO.getApellido(),
-                playerRegisterDTO.getPosicionDeJuego(),playerRegisterDTO.getEmail(),passwordEncoder.encode(playerRegisterDTO.getContraseña()),
+        Player player = new Player(playerRegisterDTO.getNombre(), playerRegisterDTO.getApellido(),
+                playerRegisterDTO.getPosicionDeJuego(), playerRegisterDTO.getEmail(), passwordEncoder.encode(playerRegisterDTO.getContraseña()),
                 Arrays.asList(new Rol("ROLE_USER")));
-        return  playerRepository.save(player);
+        return playerRepository.save(player);
     }
+
     @Override
     public List<Player> listPlayers() {
         return playerRepository.findAll();
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Player player1 = playerRepository.findbyEmail(username);
-        if(player1 == null){
+        Player player1 = playerRepository.findByEmail(username);
+        if (player1 == null) {
             throw new UsernameNotFoundException("Jugador o Password Invalidos");
         }
 
-        return  new User(player1.getEmail(), player1.getContraseña(), mapearAutoridadesRoles(player1.getRoles()));
+        return new User(player1.getEmail(), player1.getContraseña(), mapearAutoridadesRoles(player1.getRoles()));
     }
-    private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles){
-        return  roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
+
+    private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles) {
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
     }
 }

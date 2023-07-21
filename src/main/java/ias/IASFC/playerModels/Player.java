@@ -1,12 +1,6 @@
 package ias.IASFC.playerModels;
 
 
-
-
-
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,10 +9,9 @@ import java.util.Collection;
 import javax.persistence.*;
 
 
-
 @Entity
-@Table(name = "player",uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class Player  {
+@Table(name = "player", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
