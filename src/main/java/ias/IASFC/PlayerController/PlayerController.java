@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/registro")
 public class PlayerController {
 
-@Autowired
-     private final PlayerService playerService;
 
+    private PlayerService playerService;
 
+    public PlayerController(PlayerService playerService) {
+        super();
+        this.playerService = playerService;
+    }
 
     @ModelAttribute("jugador")
     public PlayerRegisterDTO returnNewPlayerRegisterDTO() {

@@ -22,7 +22,6 @@ public class Player {
     private String apellido;
     @Column(name = "posicionDeJuego")
     private String posicionDeJuego;
-
     private String email;
     private String contraseña;
 
@@ -33,7 +32,11 @@ public class Player {
             inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
     private Collection<Rol> roles;
 
-    public Player(String nombre, String apellido, String posicionDeJuego, String email, String contraseña, Collection<Rol> roles) {
+
+
+    public Player(Long id, String nombre, String apellido, String posicionDeJuego, String email, String contraseña, Collection<Rol> roles) {
+        super();
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.posicionDeJuego = posicionDeJuego;
@@ -42,6 +45,15 @@ public class Player {
         this.roles = roles;
     }
 
+    public Player(String nombre, String apellido, String posicionDeJuego, String contraseña, String email, Collection<Rol> roles) {
+        super();
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.posicionDeJuego = posicionDeJuego;
+        this.contraseña = contraseña;
+        this.email = email;
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
@@ -99,16 +111,8 @@ public class Player {
         this.roles = roles;
     }
 
-    public Player(Long id, String nombre, String apellido, String posicionDeJuego, String email, String contraseña, Collection<Rol> roles) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.posicionDeJuego = posicionDeJuego;
-        this.email = email;
-        this.contraseña = contraseña;
-        this.roles = roles;
-    }
-
     public Player() {
     }
+
+
 }
